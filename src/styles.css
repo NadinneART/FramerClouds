@@ -1,4 +1,33 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #050816; /* same as canvas background */
+}
+
+/* App fills the screen */
 .App {
-  font-family: sans-serif;
-  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Wrapper around the canvas:
+   - fixed to the viewport
+   - extends 1px outside each side to hide seams
+*/
+.canvas-wrapper {
+  position: fixed;
+  inset: -1px; /* bleed outside viewport to hide seams */
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  overflow: hidden;
+}
+
+/* Just in case, make canvas block so no extra inline spacing */
+canvas {
+  display: block;
 }
