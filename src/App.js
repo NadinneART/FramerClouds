@@ -4,7 +4,14 @@ import { Clouds, Cloud, OrbitControls } from "@react-three/drei";
 
 function CloudScene() {
   return (
-    <Canvas camera={{ position: [0, 2, 12], fov: 55 }}>
+    <Canvas
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "block",
+      }}
+      camera={{ position: [0, 2, 12], fov: 55 }}
+    >
       <color attach="background" args={["#050816"]} />
       <fog attach="fog" args={["#050816", 5, 20]} />
 
@@ -43,17 +50,10 @@ function CloudScene() {
 
 export default function App() {
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        background: "#050816",
-        margin: 0,
-        padding: 0,
-        overflow: "hidden",
-      }}
-    >
-      <CloudScene />
+    <div className="App">
+      <div className="canvas-wrapper">
+        <CloudScene />
+      </div>
     </div>
   );
 }
