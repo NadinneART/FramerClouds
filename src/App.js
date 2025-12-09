@@ -1,79 +1,100 @@
+import React from "react";
+import { Canvas } from "@react-three/fiber";
+import { Clouds, Cloud } from "@react-three/drei";
+
 function CloudScene() {
   return (
-    <Canvas camera={{ position: [0, 1.5, 10], fov: 40 }}>
-      <color attach="background" args={["#050816"]} />
-      <fog attach="fog" args={["#050816", 5, 20]} />
-
+    <Canvas
+      camera={{ position: [0, 1.1, 16], fov: 32 }} // camera a bit higher
+      gl={{ alpha: true }}
+    >
       {/* Lights */}
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[5, 10, 5]} intensity={1} />
+      <ambientLight intensity={0.9} />
+      <directionalLight position={[6, 10, 6]} intensity={1.2} />
 
-      {/* Clouds */}
-      <Clouds material="phong">
-
-        {/* Left big cloud */}
-        <Cloud
-          segments={80}
-          bounds={[6, 3, 2]}
-          volume={8}
-          opacity={0.9}
-          speed={0.15}
-          color="#ffffff"
-          fade={60}
-          position={[-4, -1, 0]}
-        />
-
-        {/* Left mid cloud */}
+      <Clouds>
+        {/* BASE BLUE MIST (stretches wide, sits low) */}
         <Cloud
           segments={60}
-          bounds={[4, 2.5, 2]}
+          bounds={[16, 2.4, 3]}
           volume={6}
-          opacity={0.85}
-          speed={0.18}
-          color="#b4d5ff"
-          fade={45}
-          position={[-2.2, -0.8, -0.5]}
+          opacity={0.82}
+          speed={0.09}
+          color="#8eb8ff"
+          fade={75}
+          position={[0, -3.8, 0]}      // moved lower
         />
 
-        {/* Right big cloud */}
+        {/* LEFT highlight cloud */}
         <Cloud
-          segments={80}
-          bounds={[6, 3, 2]}
-          volume={8}
-          opacity={0.9}
-          speed={0.15}
-          color="#ffffff"
-          fade={60}
-          position={[4, -1, 0]}
+          segments={85}
+          bounds={[7, 4, 3]}
+          volume={10}
+          opacity={0.98}
+          speed={0.11}
+          color="#eaf4ff"
+          fade={70}
+          position={[-5.2, -3.5, 0.4]} // moved lower
         />
 
-        {/* Right mid cloud */}
+        {/* LEFT core (deep blue heart) */}
         <Cloud
-          segments={60}
-          bounds={[4, 2.5, 2]}
-          volume={6}
-          opacity={0.85}
-          speed={0.18}
-          color="#b4d5ff"
-          fade={45}
-          position={[2.2, -0.8, -0.5]}
+          segments={65}
+          bounds={[5, 3, 3]}
+          volume={7}
+          opacity={0.95}
+          speed={0.11}
+          color="#6ea0f5"
+          fade={55}
+          position={[-3.7, -3.2, 0]}   // moved lower
         />
 
-        {/* Soft center fog to blend the gap */}
+        {/* RIGHT highlight cloud */}
         <Cloud
-          segments={40}
-          bounds={[3, 1, 2]}
-          volume={2}
-          opacity={0.4}
-          speed={0.1}
-          color="#ffffff"
-          fade={30}
-          position={[0, -0.3, -1]}
+          segments={85}
+          bounds={[7, 4, 3]}
+          volume={10}
+          opacity={0.98}
+          speed={0.11}
+          color="#eaf4ff"
+          fade={70}
+          position={[5.2, -3.5, 0.4]}  // moved lower
         />
 
+        {/* RIGHT core */}
+        <Cloud
+          segments={65}
+          bounds={[5, 3, 3]}
+          volume={7}
+          opacity={0.95}
+          speed={0.11}
+          color="#6ea0f5"
+          fade={55}
+          position={[3.7, -3.2, 0]}    // moved lower
+        />
+
+        {/* SOFT bluish center haze */}
+        <Cloud
+          segments={45}
+          bounds={[7, 2.0, 3]}
+          volume={4}
+          opacity={0.32}
+          speed={0.08}
+          color="#a9c9ff"
+          fade={80}
+          position={[0, -3.1, -0.4]}   // moved lower
+        />
       </Clouds>
-
-      <OrbitControls enableZoom={false} enablePan={false} />
     </Canvas>
+  );
+}
+
+export default function App() {
+  return (
+    <div className="App">
+      <div className="canvas-wrapper">
+        <CloudScene />
+      </div>
+    </div>
   );
 }
