@@ -1,49 +1,90 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
-import { Clouds, Cloud, OrbitControls } from "@react-three/drei";
+import { Clouds, Cloud } from "@react-three/drei";
 
 function CloudScene() {
   return (
     <Canvas
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "block",
-      }}
-      camera={{ position: [0, 2, 12], fov: 55 }}
+      camera={{ position: [0, 1.1, 16], fov: 32 }} // camera a bit higher
+      gl={{ alpha: true }}
     >
-      <color attach="background" args={["#050816"]} />
-      <fog attach="fog" args={["#050816", 5, 20]} />
-
       {/* Lights */}
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[5, 10, 5]} intensity={1} />
+      <ambientLight intensity={0.9} />
+      <directionalLight position={[6, 10, 6]} intensity={1.2} />
 
-      {/* Clouds */}
       <Clouds>
+        {/* BASE BLUE MIST (stretches wide, sits low) */}
         <Cloud
           segments={60}
-          bounds={[4, 2, 2]}
-          volume={7}
-          opacity={0.8}
-          speed={0.2}
-          color="#ffffff"
-          fade={40}
-          position={[0, 1.5, 0]}
+          bounds={[16, 2.4, 3]}
+          volume={6}
+          opacity={0.82}
+          speed={0.09}
+          color="#8eb8ff"
+          fade={75}
+          position={[0, -3.8, 0]}      // moved lower
         />
+
+        {/* LEFT highlight cloud */}
         <Cloud
-          segments={40}
-          bounds={[4, 2, 2]}
-          volume={5}
-          opacity={0.6}
-          speed={0.25}
-          color="#9fc9ff"
-          fade={35}
-          position={[-3, 1, -2]}
+          segments={85}
+          bounds={[7, 4, 3]}
+          volume={10}
+          opacity={0.98}
+          speed={0.11}
+          color="#eaf4ff"
+          fade={70}
+          position={[-5.2, -3.5, 0.4]} // moved lower
+        />
+
+        {/* LEFT core (deep blue heart) */}
+        <Cloud
+          segments={65}
+          bounds={[5, 3, 3]}
+          volume={7}
+          opacity={0.95}
+          speed={0.11}
+          color="#6ea0f5"
+          fade={55}
+          position={[-3.7, -3.2, 0]}   // moved lower
+        />
+
+        {/* RIGHT highlight cloud */}
+        <Cloud
+          segments={85}
+          bounds={[7, 4, 3]}
+          volume={10}
+          opacity={0.98}
+          speed={0.11}
+          color="#eaf4ff"
+          fade={70}
+          position={[5.2, -3.5, 0.4]}  // moved lower
+        />
+
+        {/* RIGHT core */}
+        <Cloud
+          segments={65}
+          bounds={[5, 3, 3]}
+          volume={7}
+          opacity={0.95}
+          speed={0.11}
+          color="#6ea0f5"
+          fade={55}
+          position={[3.7, -3.2, 0]}    // moved lower
+        />
+
+        {/* SOFT bluish center haze */}
+        <Cloud
+          segments={45}
+          bounds={[7, 2.0, 3]}
+          volume={4}
+          opacity={0.32}
+          speed={0.08}
+          color="#a9c9ff"
+          fade={80}
+          position={[0, -3.1, -0.4]}   // moved lower
         />
       </Clouds>
-
-      <OrbitControls enableZoom={false} enablePan={false} />
     </Canvas>
   );
 }
