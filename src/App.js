@@ -1,90 +1,91 @@
+// App.js
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Clouds, Cloud } from "@react-three/drei";
 
-// 🔵 1) ONE main blue value – change only this:
-const BLUE_BASE = "#79C1E4"; // try things like "#bfe3ff", "#d6efff", etc.
-
-// Small helper to blend two hex colors (used to create lighter / deeper blues)
-function mixHex(c1, c2, ratio) {
-  const parse = (c) => {
-    const hex = c.replace("#", "");
-    const n = parseInt(hex, 16);
-    return {
-      r: (n >> 16) & 255,
-      g: (n >> 8) & 255,
-      b: n & 255,
-    };
-  };
-
-  const a = parse(c1);
-  const b = parse(c2);
-
-  const r = Math.round(a.r * (1 - ratio) + b.r * ratio);
-  const g = Math.round(a.g * (1 - ratio) + b.g * ratio);
-  const bl = Math.round(a.b * (1 - ratio) + b.b * ratio);
-
-  return (
-    "#" +
-    [r, g, bl]
-      .map((v) => v.toString(16).padStart(2, "0"))
-      .join("")
-  );
-}
-
-// Derived palette – all based on BLUE_BASE
-const BLUE_LIGHT = mixHex("#ffffff", BLUE_BASE, 0.4); // far clouds
-const BLUE_MID = BLUE_BASE;                            // mid plane
-const BLUE_DEEP = mixHex("#4f8ad9", BLUE_BASE, 0.45);  // foreground
+/* ---------- Cloud color controls (tweak these only) ---------- */
+const BLUE_NEAR = "#8fd1ff";  // foreground blue
+const BLUE_MID  = "#aeddff";  // middle plane
+const BLUE_FAR  = "#d9eeff";  // background plane
 
 function CloudScene() {
   return (
     <Canvas
-      camera={{ position: [0, 1.1, 16], fov: 32 }}
+      camera={{ position: [0, 1.2, 18], fov: 30 }}
       gl={{ alpha: true }}
     >
       {/* Lights */}
       <ambientLight intensity={0.9} />
       <directionalLight position={[6, 10, 6]} intensity={1.2} />
 
-      <Clouds>
-        {/* 3rd plane – far, very soft band near the top */}
+      {/* Stable cloud field */}
+      <Clouds material="phong" seed={5} limit={600}>
+        {/* ---------- 3rd plano (far, top) ---------- */}
+        {/* Soft band hugging the top of the viewport */}
         <Cloud
-          seed={1}
-          segments={70}
-          bounds={[18, 3, 4]}
-          volume={5}
-          opacity={0.45}
-          speed={0.08}
-          color={BLUE_LIGHT}
-          fade={80}
-          position={[0, -1.6, -2]}
-        />
-
-        {/* 2nd plane – mid depth clouds */}
-        <Cloud
-          seed={2}
-          segments={80}
-          bounds={[18, 3.5, 4]}
-          volume={8}
-          opacity={0.75}
-          speed={0.1}
-          color={BLUE_MID}
-          fade={75}
-          position={[0, -3.0, -1]}
-        />
-
-        {/* 1st plane – foreground, richer blue, sitting lower */}
-        <Cloud
-          seed={3}
-          segments={90}
-          bounds={[18, 3.8, 4]}
+          seed={11}
+          segments={60}
+          bounds={[24, 5, 6]}   // wide & a bit tall
           volume={10}
+          opacity={0.55}
+          speed={0.02}
+          fade={120}
+          color={BLUE_FAR}
+          position={[0, 3.2, -6]} // high & far
+        />
+
+        {/* ---------- 2nd plano (middle) ---------- */}
+        {/* Middle layer, filling the “mountain” of clouds */}
+        <Cloud
+          seed={21}
+          segments={70}
+          bounds={[22, 6, 6]}
+          volume={14}
+          opacity={0.75}
+          speed={0.03}
+          fade={90}
+          color={BLUE_MID}
+          position={[0, 0.8, -3]}
+        />
+
+        {/* ---------- 1st plano (foreground) ---------- */}
+        {/* Left tower */}
+        <Cloud
+          seed={31}
+          segments={85}
+          bounds={[11, 7, 6]}
+          volume={20}
+          opacity={0.95}
+          speed={0.04}
+          fade={75}
+          color={BLUE_NEAR}
+          position={[-8.5, -2.6, 0.4]}
+        />
+
+        {/* Right tower */}
+        <Cloud
+          seed={32}
+          segments={85}
+          bounds={[11, 7, 6]}
+          volume={20}
+          opacity={0.95}
+          speed={0.04}
+          fade={75}
+          color={BLUE_NEAR}
+          position={[8.5, -2.6, 0.4]}
+        />
+
+        {/* Bottom “valley” in the center foreground */}
+        <Cloud
+          seed={33}
+          segments={70}
+          bounds={[16, 4.5, 6]}
+          volume={16}
           opacity={0.9}
-          speed={0.11}
-          color={BLUE_DEEP}
-          fade={70}
-          position={[0, -4.2, 0.2]}
+          speed={0.035}
+          fade={80}
+          color={BLUE_NEAR}
+          position={[0, -3.4, 0.8]}
         />
       </Clouds>
     </Canvas>
