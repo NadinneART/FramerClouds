@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { Clouds, Cloud } from "@react-three/drei";
 
 /* ---------- Cloud color controls (tweak these only) ---------- */
-const BLUE_NEAR = "#8fd1ff";  // foreground blue
+const BLUE_NEAR = "#ff8fdaff";  // foreground blue
 const BLUE_MID  = "#aeddff";  // middle plane
 const BLUE_FAR  = "#d9eeff";  // background plane
 
