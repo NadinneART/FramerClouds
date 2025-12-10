@@ -1,129 +1,127 @@
 // App.js
-import React from "react"
+import React, { useMemo } from "react"
 import { Canvas } from "@react-three/fiber"
-import { Clouds, Cloud } from "@react-three/drei"
+import { Points, PointMaterial, OrbitControls } from "@react-three/drei"
 
-/* ---------- Cloud color controls (tweak these only) ---------- */
-const BLUE_NEAR = "#8fd3ff"  // foreground blue
-const BLUE_MID  = "#bfe4ff"  // middle plane
-const BLUE_FAR  = "#dff1ff"  // background plane
+/* ----------------- Color “tokens” ----------------- */
+const BLUE_FAR = "#e1f2ff"  // 3rd plane (top, far)
+const BLUE_MID = "#b9e0ff"  // 2nd plane (middle)
+const BLUE_NEAR = "#8ec3ff" // 1st plane (bottom, foreground)
 
+/* ----------------- Seeded random ------------------ */
+// Simple deterministic PRNG (mulberry32)
+function seededRandom(seed = 1) {
+  let t = seed >>> 0
+  return function () {
+    t += 0x6d2b79f5
+    let r = t
+    r = Math.imul(r ^ (r >>> 15), r | 1)
+    r ^= r + Math.imul(r ^ (r >>> 7), r | 61)
+    return ((r ^ (r >>> 14)) >>> 0) / 4294967296
+  }
+}
+
+/* ------------- Generate a horizontal plane -------- */
+function randomOnHorizontalPlane(count, width, depth, heightVariation, seed = 1) {
+  const random = seededRandom(seed)
+  const points = new Float32Array(count * 3)
+
+  for (let i = 0; i < count * 3; i += 3) {
+    // X: spread along width
+    points[i] = (random() - 0.5) * width
+    // Y: small vertical variation
+    points[i + 1] = (random() - 0.5) * heightVariation
+    // Z: spread along depth
+    points[i + 2] = (random() - 0.5) * depth
+  }
+
+  return points
+}
+
+/* ---------------- CloudPlane component ------------- */
+function CloudPlane({
+  seed = 1,
+  count = 800,
+  width = 20,
+  depth = 6,
+  heightVariation = 1.5,
+  color = "#ffffff",
+  size = 60,
+  opacity = 0.9,
+  position = [0, 0, 0],
+}) {
+  const positions = useMemo(
+    () => randomOnHorizontalPlane(count, width, depth, heightVariation, seed),
+    [count, width, depth, heightVariation, seed]
+  )
+
+  return (
+    <group position={position}>
+      <Points positions={positions} frustumCulled={false}>
+        <PointMaterial
+          transparent
+          color={color}
+          size={size}
+          sizeAttenuation
+          depthWrite={false}
+          opacity={opacity}
+        />
+      </Points>
+    </group>
+  )
+}
+
+/* --------------------- Scene ---------------------- */
 function CloudScene() {
   return (
     <Canvas
-      camera={{ position: [0, 1.6, 18], fov: 30 }}
+      camera={{ position: [0, 2, 16], fov: 40 }}
       gl={{ alpha: true }}
     >
-      {/* Lights */}
-      <ambientLight intensity={0.9} />
-      <directionalLight position={[6, 10, 6]} intensity={1.2} />
+      {/* Optional: orbit to inspect while designing */}
+      {/* <OrbitControls enablePan={false} /> */}
 
-      {/* All clouds share one field */}
-      <Clouds material="phong" seed={5} limit={600}>
-        {/* ---------- 3rd plano (far, top band) ---------- */}
-        <Cloud
-          seed={11}
-          segments={60}
-          bounds={[26, 4, 4]}   // wide, thin band
-          volume={8}
-          opacity={0.4}
-          speed={0.015}
-          fade={130}
-          color={BLUE_FAR}
-          position={[0, 3.4, -9]} // HIGH + DEEP
-        />
+      {/* A bit of ambient light to keep things soft */}
+      <ambientLight intensity={0.6} />
 
-        {/* A little extra fluff in the far background */}
-        <Cloud
-          seed={12}
-          segments={45}
-          bounds={[18, 3.5, 4]}
-          volume={5}
-          opacity={0.35}
-          speed={0.015}
-          fade={120}
-          color={BLUE_FAR}
-          position={[0, 2.6, -8.5]}
-        />
+      {/* 3rd plane – FAR (top of viewport) */}
+      <CloudPlane
+        seed={10}
+        count={900}
+        width={32}
+        depth={10}
+        heightVariation={1.2}
+        color={BLUE_FAR}
+        size={45}
+        opacity={0.6}
+        position={[0, 4, -10]}   // high & far
+      />
 
-        {/* ---------- 2nd plano (middle “mountain”) ---------- */}
-        <Cloud
-          seed={21}
-          segments={70}
-          bounds={[22, 5.5, 4]}  // centered band
-          volume={14}
-          opacity={0.7}
-          speed={0.02}
-          fade={95}
-          color={BLUE_MID}
-          position={[0, 0.4, -3.5]} // MID HEIGHT + MID DEPTH
-        />
+      {/* 2nd plane – MIDDLE (middle of viewport) */}
+      <CloudPlane
+        seed={20}
+        count={1100}
+        width={28}
+        depth={9}
+        heightVariation={2.0}
+        color={BLUE_MID}
+        size={55}
+        opacity={0.8}
+        position={[0, 1.2, -6]}  // mid height & depth
+      />
 
-        {/* Side lumps for the mid layer, slightly offset */}
-        <Cloud
-          seed={22}
-          segments={55}
-          bounds={[14, 4.5, 4]}
-          volume={9}
-          opacity={0.65}
-          speed={0.02}
-          fade={90}
-          color={BLUE_MID}
-          position={[-6, 0.1, -3]} // left mid
-        />
-
-        <Cloud
-          seed={23}
-          segments={55}
-          bounds={[14, 4.5, 4]}
-          volume={9}
-          opacity={0.65}
-          speed={0.02}
-          fade={90}
-          color={BLUE_MID}
-          position={[6, 0.1, -3]} // right mid
-        />
-
-        {/* ---------- 1st plano (foreground towers) ---------- */}
-        {/* Left foreground tower */}
-        <Cloud
-          seed={31}
-          segments={85}
-          bounds={[10, 6, 4]}
-          volume={20}
-          opacity={0.96}
-          speed={0.03}
-          fade={80}
-          color={BLUE_NEAR}
-          position={[-8.2, -3.2, 1.5]} // LOW + VERY CLOSE
-        />
-
-        {/* Right foreground tower */}
-        <Cloud
-          seed={32}
-          segments={85}
-          bounds={[10, 6, 4]}
-          volume={20}
-          opacity={0.96}
-          speed={0.03}
-          fade={80}
-          color={BLUE_NEAR}
-          position={[8.2, -3.2, 1.5]} // LOW + VERY CLOSE
-        />
-
-        {/* Bottom valley between towers */}
-        <Cloud
-          seed={33}
-          segments={70}
-          bounds={[18, 3.2, 4]}
-          volume={16}
-          opacity={0.94}
-          speed={0.03}
-          fade={80}
-          color={BLUE_NEAR}
-          position={[0, -3.8, 1.2]} // LOWEST + CLOSE
-        />
-      </Clouds>
+      {/* 1st plane – FOREGROUND (bottom of viewport) */}
+      <CloudPlane
+        seed={30}
+        count={1300}
+        width={30}
+        depth={8}
+        heightVariation={2.5}
+        color={BLUE_NEAR}
+        size={70}
+        opacity={0.95}
+        position={[0, -2.5, -3]} // low & closer
+      />
     </Canvas>
   )
 }
