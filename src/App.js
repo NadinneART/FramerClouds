@@ -34,57 +34,57 @@ function mixHex(c1, c2, ratio) {
 
 // Derived palette – all based on BLUE_BASE
 const BLUE_LIGHT = mixHex("#ffffff", BLUE_BASE, 0.4); // far clouds
-const BLUE_MID   = BLUE_BASE;                         // mid plane
-const BLUE_DEEP  = mixHex("#4f8ad9", BLUE_BASE, 0.45); // foreground
+const BLUE_MID = BLUE_BASE;                            // mid plane
+const BLUE_DEEP = mixHex("#4f8ad9", BLUE_BASE, 0.45);  // foreground
 
 function CloudScene() {
   return (
     <Canvas
-      camera={{ position: [0, 1.2, 18], fov: 32 }}
+      camera={{ position: [0, 1.1, 16], fov: 32 }}
       gl={{ alpha: true }}
     >
       {/* Lights */}
       <ambientLight intensity={0.9} />
       <directionalLight position={[6, 10, 6]} intensity={1.2} />
 
-      <Clouds /* you can add seed={5} here if you want it 100% stable */>
-        {/* 3rd plane – FAR (high + deep + soft) */}
+      <Clouds>
+        {/* 3rd plane – far, very soft band near the top */}
         <Cloud
           seed={1}
           segments={70}
-          bounds={[20, 3.2, 5]}   // wide, fairly thin band
-          volume={6}
-          opacity={0.4}
-          speed={0.06}
+          bounds={[18, 3, 4]}
+          volume={5}
+          opacity={0.45}
+          speed={0.08}
           color={BLUE_LIGHT}
-          fade={90}
-          position={[0, 3.0, -6]} // ⬆ Y, ⬅ into Z
+          fade={80}
+          position={[0, -1.6, -2]}
         />
 
-        {/* 2nd plane – MID (around center) */}
+        {/* 2nd plane – mid depth clouds */}
         <Cloud
           seed={2}
           segments={80}
-          bounds={[20, 3.6, 5]}
-          volume={9}
-          opacity={0.72}
-          speed={0.08}
+          bounds={[18, 3.5, 4]}
+          volume={8}
+          opacity={0.75}
+          speed={0.1}
           color={BLUE_MID}
-          fade={80}
-          position={[0, 0.2, -3]} // mid height, mid depth
+          fade={75}
+          position={[0, -3.0, -1]}
         />
 
-        {/* 1st plane – FOREGROUND (low + close + punchy) */}
+        {/* 1st plane – foreground, richer blue, sitting lower */}
         <Cloud
           seed={3}
           segments={90}
-          bounds={[20, 4.0, 5]}
-          volume={11}
-          opacity={0.92}
-          speed={0.1}
+          bounds={[18, 3.8, 4]}
+          volume={10}
+          opacity={0.9}
+          speed={0.11}
           color={BLUE_DEEP}
-          fade={75}
-          position={[0, -3.2, 0]} // bottom band, closest
+          fade={70}
+          position={[0, -4.2, 0.2]}
         />
       </Clouds>
     </Canvas>
