@@ -39,7 +39,7 @@ function CloudScene() {
           segments={70}
           bounds={[22, 6, 6]}
           volume={14}
-          opacity={0.75}
+          opacity={0}
           speed={0.03}
           fade={90}
           color={BLUE_MID}
@@ -53,7 +53,7 @@ function CloudScene() {
           segments={85}
           bounds={[11, 7, 6]}
           volume={20}
-          opacity={0.95}
+          opacity={0}
           speed={0.04}
           fade={75}
           color={BLUE_NEAR}
@@ -66,7 +66,7 @@ function CloudScene() {
           segments={85}
           bounds={[11, 7, 6]}
           volume={20}
-          opacity={0.95}
+          opacity={0}
           speed={0.04}
           fade={75}
           color={BLUE_NEAR}
@@ -79,7 +79,7 @@ function CloudScene() {
           segments={70}
           bounds={[16, 4.5, 6]}
           volume={16}
-          opacity={0.9}
+          opacity={0}
           speed={0.035}
           fade={80}
           color={BLUE_NEAR}
