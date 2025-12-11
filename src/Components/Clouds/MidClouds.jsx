@@ -19,7 +19,7 @@ export function MidClouds({
         seed={90}
         segments={150}
         bounds={[26, 6, 3]}
-        volume={22}
+        volume={12}
         opacity={0.9 * opacity}
         speed={0.1 * speed}
         color={MID_WHITE_BASE}
@@ -32,7 +32,7 @@ export function MidClouds({
         seed={90}
         segments={150}
         bounds={[24, 5, 8]}
-        volume={22}
+        volume={12}
         opacity={0 * opacity}
         speed={0.5 * speed}
         color={MID_BLUE_SHADOW}

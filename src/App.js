@@ -32,9 +32,9 @@ function CloudScene() {
         {/* BACK layer */}
         <MidClouds
           position={[15, -2, -20]}
-          opacity={0.2}
+          opacity={0.6}
           speed={0.8}
-          scale={[0.9, 1, 1]}
+          scale={[1, 1, 1]}
         />
 
         {/* FRONT layer */}
@@ -42,7 +42,7 @@ function CloudScene() {
           position={[4, -12, 3]}
           opacity={1}
           speed={2}
-          scale={[1.1, 1.4, 1]}
+          scale={[1, 1.4, 1]}
         />
       </Clouds>
     </Canvas>
