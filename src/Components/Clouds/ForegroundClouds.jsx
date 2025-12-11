@@ -47,7 +47,7 @@ export function ForegroundClouds({
         segments={360}
         bounds={[25, 5, 6]}
         volume={10}
-        opacity={1 * opacity}
+        opacity={0 * opacity}
         speed={0.020 * speed}
         color={FG_BLUE_MAIN}
         fade={40}
