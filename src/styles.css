@@ -6,7 +6,7 @@ body,
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: transparent;
+  background: none;
 }
 
 /* App fills the screen */
@@ -20,12 +20,12 @@ body,
    - extends 1px outside each side to hide seams
 */
 .canvas-wrapper {
-  position: fixed;
-  inset: -1px; /* bleed outside viewport to hide seams */
-  width: calc(100% + 2px);
-  height: calc(100% + 2px);
-  overflow: hidden;
-  background: transparent
+    width: 100%;
+    height: 100vh;
+    background-image: url("./Assets/desktop-54.jpg");
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
 }
 
 /* Just in case, make canvas block so no extra inline spacing */
