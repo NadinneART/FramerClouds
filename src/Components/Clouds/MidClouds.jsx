@@ -3,7 +3,7 @@ import React from "react";
 import { Cloud } from "@react-three/drei";
 
 /* Mid-plane palette */
-const MID_WHITE_BASE = "#0fabe3";
+const MID_WHITE_BASE = "#16b0e8ff";
 const MID_BLUE_SHADOW  = "#9ec1e6";
 
 export function MidClouds({
