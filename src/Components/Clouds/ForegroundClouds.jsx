@@ -3,7 +3,7 @@ import React from "react"
 import { Cloud } from "@react-three/drei"
 
 /* Front-plane palette */
-const FG_BLUE_SHADOW = "#80B6E1"
+const FG_BLUE_SHADOW = "#4b9adb"
 const FG_BLUE_MAIN = "#85c0fe"
 const FG_WHITE_TOP = "#FEFEFF"
 
