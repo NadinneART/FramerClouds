@@ -6,6 +6,7 @@ import { Clouds } from "@react-three/drei";
 import { ForegroundClouds } from "./Components/Clouds/ForegroundClouds";
 import { MidClouds } from "./Components/Clouds/MidClouds";
 import { MidCloudsLeft } from "./Components/Clouds/MidCloudsLeft";
+import { ForegroundDetailClouds } from "./Components/Clouds/ForegroundDetailClouds";
 
 function CloudScene() {
   return (
@@ -36,7 +37,13 @@ function CloudScene() {
           speed={0.8}
           scale={[1, 1, 1]}
         />
-
+         {/* #1 Foreground details (small clouds) */}
+         <ForegroundDetailClouds
+          position={[10, -5, -8]}
+          opacity={1}
+          speed={1}
+           scale={[1, 1, 1]}
+        />
         {/* FRONT layer */}
         <ForegroundClouds
           position={[4, -12, 3]}
