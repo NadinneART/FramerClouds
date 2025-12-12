@@ -2,9 +2,9 @@
 import React from "react";
 import { Cloud } from "@react-three/drei";
 
-/* Detail palette (reuse foreground language) */
-const DETAIL_WHITE = "#FEFEFF";
-const DETAIL_BLUE  = "#80B6E1";
+/* Detail palette */
+const DETAIL_BLUE_SHADOW = "#80B6E1";
+const DETAIL_WHITE_TOP   = "#FEFEFF";
 
 export function ForegroundDetailClouds({
   position = [0, 0, 0],
@@ -15,126 +15,243 @@ export function ForegroundDetailClouds({
   return (
     <group position={position} scale={scale}>
       {/* =========================
-          SHADOW BAND (behind)
-          - slightly lower Y
-          - more negative Z (further back)
-          - a bit larger
+          LEFT → MID (lighter density)
          ========================= */}
+
       <Cloud
-        seed={401}
+        seed={610}
+        segments={60}
+        bounds={[4.0, 1.1, 2.4]}
+        volume={2.0}
+        opacity={0.55 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_WHITE_TOP}
+        fade={14}
+        position={[-14.0, -2.9, 1.0]}
+      />
+
+      <Cloud
+        seed={611}
+        segments={60}
+        bounds={[3.6, 1.0, 2.2]}
+        volume={1.8}
+        opacity={0.40 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_BLUE_SHADOW}
+        fade={14}
+        position={[-12.0, -3.1, 1.1]}
+      />
+
+      <Cloud
+        seed={612}
+        segments={65}
+        bounds={[4.2, 1.2, 2.5]}
+        volume={2.1}
+        opacity={0.60 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_WHITE_TOP}
+        fade={14}
+        position={[-10.0, -2.8, 1.0]}
+      />
+
+      <Cloud
+        seed={613}
+        segments={60}
+        bounds={[3.7, 1.0, 2.2]}
+        volume={1.9}
+        opacity={0.35 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_BLUE_SHADOW}
+        fade={14}
+        position={[-8.4, -3.2, 1.15]}
+      />
+
+      <Cloud
+        seed={614}
         segments={70}
-        bounds={[10.5, 2.3, 5.2]}
-        volume={3.4}
-        opacity={0.55 * opacity}
-        speed={0.02 * speed}
-        color={DETAIL_BLUE}
-        fade={12}
-        position={[-6.5, -4.2, -9.5]}
+        bounds={[4.6, 1.3, 2.7]}
+        volume={2.2}
+        opacity={0.62 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_WHITE_TOP}
+        fade={14}
+        position={[-6.6, -2.9, 1.05]}
       />
 
       <Cloud
-        seed={402}
-        segments={80}
-        bounds={[12.5, 2.6, 6.0]}
-        volume={3.8}
-        opacity={0.6 * opacity}
-        speed={0.02 * speed}
-        color={DETAIL_BLUE}
-        fade={12}
-        position={[-1.8, -4.4, -9.8]}
+        seed={615}
+        segments={60}
+        bounds={[3.8, 1.0, 2.2]}
+        volume={2.0}
+        opacity={0.38 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_BLUE_SHADOW}
+        fade={14}
+        position={[-4.8, -3.2, 1.2]}
       />
 
       <Cloud
-        seed={403}
-        segments={90}
-        bounds={[16.0, 3.0, 7.2]}
-        volume={4.4}
+        seed={616}
+        segments={70}
+        bounds={[4.8, 1.3, 2.8]}
+        volume={2.3}
         opacity={0.65 * opacity}
-        speed={0.02 * speed}
-        color={DETAIL_BLUE}
-        fade={10}
-        position={[5.5, -4.5, -10.2]}
-      />
-
-      {/* Right-heavy deeper shadow (helps match reference) */}
-      <Cloud
-        seed={404}
-        segments={90}
-        bounds={[18.0, 3.2, 7.8]}
-        volume={4.8}
-        opacity={0.55 * opacity}
-        speed={0.02 * speed}
-        color={DETAIL_BLUE}
-        fade={10}
-        position={[10.5, -4.7, -10.8]}
+        speed={0.03 * speed}
+        color={DETAIL_WHITE_TOP}
+        fade={14}
+        position={[-3.0, -2.9, 1.05]}
       />
 
       {/* =========================
-          HIGHLIGHT BAND (front)
-          - slightly higher Y
-          - closer Z (less negative)
-          - whiter
+          CENTER
          ========================= */}
+
       <Cloud
-        seed={501}
+        seed={617}
+        segments={60}
+        bounds={[3.9, 1.05, 2.3]}
+        volume={2.0}
+        opacity={0.36 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_BLUE_SHADOW}
+        fade={14}
+        position={[-1.2, -3.2, 1.2]}
+      />
+
+      <Cloud
+        seed={618}
+        segments={75}
+        bounds={[5.2, 1.35, 3.0]}
+        volume={2.5}
+        opacity={0.68 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_WHITE_TOP}
+        fade={14}
+        position={[0.8, -2.95, 1.05]}
+      />
+
+      <Cloud
+        seed={619}
+        segments={60}
+        bounds={[4.0, 1.1, 2.4]}
+        volume={2.1}
+        opacity={0.40 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_BLUE_SHADOW}
+        fade={14}
+        position={[2.6, -3.15, 1.15]}
+      />
+
+      {/* =========================
+          RIGHT (more density)
+         ========================= */}
+
+      <Cloud
+        seed={620}
+        segments={80}
+        bounds={[5.8, 1.45, 3.2]}
+        volume={2.7}
+        opacity={0.75 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_WHITE_TOP}
+        fade={12}
+        position={[4.6, -2.85, 1.0]}
+      />
+
+      <Cloud
+        seed={621}
+        segments={65}
+        bounds={[4.4, 1.15, 2.6]}
+        volume={2.2}
+        opacity={0.42 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_BLUE_SHADOW}
+        fade={12}
+        position={[6.2, -3.1, 1.15]}
+      />
+
+      <Cloud
+        seed={622}
         segments={85}
-        bounds={[11.5, 2.4, 5.2]}
-        volume={3.6}
-        opacity={0.85 * opacity}
+        bounds={[6.2, 1.55, 3.4]}
+        volume={2.9}
+        opacity={0.78 * opacity}
         speed={0.03 * speed}
-        color={DETAIL_WHITE}
-        fade={14}
-        position={[-7.2, -3.6, -7.8]}
+        color={DETAIL_WHITE_TOP}
+        fade={12}
+        position={[7.6, -2.8, 0.95]}
       />
 
       <Cloud
-        seed={502}
+        seed={623}
+        segments={65}
+        bounds={[4.6, 1.2, 2.7]}
+        volume={2.3}
+        opacity={0.40 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_BLUE_SHADOW}
+        fade={12}
+        position={[9.2, -3.2, 1.2]}
+      />
+
+      <Cloud
+        seed={624}
+        segments={90}
+        bounds={[6.6, 1.6, 3.6]}
+        volume={3.1}
+        opacity={0.80 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_WHITE_TOP}
+        fade={12}
+        position={[10.6, -2.9, 0.95]}
+      />
+
+      <Cloud
+        seed={625}
+        segments={65}
+        bounds={[4.8, 1.25, 2.8]}
+        volume={2.3}
+        opacity={0.38 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_BLUE_SHADOW}
+        fade={12}
+        position={[12.0, -3.1, 1.15]}
+      />
+
+      <Cloud
+        seed={626}
         segments={95}
-        bounds={[13.5, 2.7, 6.0]}
-        volume={4.0}
-        opacity={0.9 * opacity}
+        bounds={[7.0, 1.7, 3.8]}
+        volume={3.2}
+        opacity={0.80 * opacity}
         speed={0.03 * speed}
-        color={DETAIL_WHITE}
-        fade={14}
-        position={[-2.0, -3.9, -8.0]}
-      />
-
-      <Cloud
-        seed={503}
-        segments={105}
-        bounds={[16.5, 3.2, 7.0]}
-        volume={4.6}
-        opacity={0.95 * opacity}
-        speed={0.03 * speed}
-        color={DETAIL_WHITE}
+        color={DETAIL_WHITE_TOP}
         fade={12}
-        position={[5.2, -4.0, -8.2]}
+        position={[13.4, -2.85, 0.9]}
       />
 
-      {/* Big bright right puff cluster (reference has a strong right mass) */}
       <Cloud
-        seed={504}
-        segments={120}
-        bounds={[20.0, 3.6, 8.2]}
-        volume={5.2}
-        opacity={0.95 * opacity}
+        seed={627}
+        segments={65}
+        bounds={[4.8, 1.25, 2.8]}
+        volume={2.2}
+        opacity={0.35 * opacity}
         speed={0.03 * speed}
-        color={DETAIL_WHITE}
+        color={DETAIL_BLUE_SHADOW}
         fade={12}
-        position={[12.5, -4.1, -8.5]}
+        position={[14.8, -3.2, 1.2]}
       />
 
-      {/* Small topper accents (subtle, makes it feel “cumulus”) */}
       <Cloud
-        seed={505}
-        segments={70}
-        bounds={[8.0, 2.0, 4.2]}
-        volume={2.6}
-        opacity={0.65 * opacity}
-        speed={0.035 * speed}
-        color={DETAIL_WHITE}
-        fade={16}
-        position={[9.0, -2.9, -7.4]}
+        seed={628}
+        segments={90}
+        bounds={[6.8, 1.65, 3.7]}
+        volume={3.0}
+        opacity={0.75 * opacity}
+        speed={0.03 * speed}
+        color={DETAIL_WHITE_TOP}
+        fade={12}
+        position={[16.2, -2.9, 0.9]}
       />
     </group>
   );

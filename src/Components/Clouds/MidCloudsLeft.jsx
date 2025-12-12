@@ -33,7 +33,7 @@ export function MidCloudsLeft({
         segments={40}
         bounds={[24, 5, 8]}
         volume={18}
-        opacity={0.6* opacity}
+        opacity={0.5* opacity}
         speed={0.018 * speed}
         color={MID_BLUE_SHADOW}
         fade={0}

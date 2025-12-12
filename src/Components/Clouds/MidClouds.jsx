@@ -3,7 +3,7 @@ import React from "react";
 import { Cloud } from "@react-three/drei";
 
 /* Mid-plane palette */
-const MID_WHITE_BASE = "#16b0e8ff";
+const MID_WHITE_BASE = "#ffffff";
 const MID_BLUE_SHADOW  = "#9ec1e6";
 
 export function MidClouds({
@@ -20,7 +20,7 @@ export function MidClouds({
         segments={150}
         bounds={[26, 6, 3]}
         volume={12}
-        opacity={0.9 * opacity}
+        opacity={0.5 * opacity}
         speed={0.1 * speed}
         color={MID_WHITE_BASE}
         fade={80}
@@ -33,10 +33,10 @@ export function MidClouds({
         segments={150}
         bounds={[24, 5, 8]}
         volume={12}
-        opacity={0 * opacity}
+        opacity={0.3 * opacity}
         speed={0.5 * speed}
-        color={MID_BLUE_SHADOW}
-        fade={0}
+        color={MID_WHITE_BASE}
+        fade={80}
         position={[3, -1, 2]}
       />
     </group>

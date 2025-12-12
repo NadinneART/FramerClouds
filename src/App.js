@@ -14,16 +14,40 @@ function CloudScene() {
       <ambientLight intensity={2} />
       <directionalLight position={[7, 14, 6]} intensity={2} color="#ffffff" />
 
-      <Clouds limit={1000}>
-        {/* 3rd (BACK): Midclouds */}
-        <MidCloudsLeft position={[20, -8, -24]} opacity={0.3} speed={0.8} scale={[0.9, 1, 1]} />
-        <MidClouds     position={[15, -2, -18]} opacity={0.6} speed={0.8} scale={[1, 1, 1]} />
+      {/* 3rd (BACK): Mid clouds */}
+      <Clouds limit={800}>
+        <MidCloudsLeft
+          position={[20, -8, -24]}
+          opacity={0.3}
+          speed={0.8}
+          scale={[0.9, 1, 1]}
+        />
+        <MidClouds
+          position={[15, -2, -18]}
+          opacity={0.6}
+          speed={0.8}
+          scale={[1, 1, 1]}
+        />
+      </Clouds>
 
-        {/* 2nd: Foreground mass */}
-        <ForegroundClouds position={[4, -12, -4]} opacity={1} speed={2} scale={[1, 1.4, 1]} />
+      {/* 2nd: Foreground mass */}
+      <Clouds limit={600}>
+        <ForegroundClouds
+          position={[4, -12, -4]}
+          opacity={1}
+          speed={2}
+          scale={[1, 1.4, 1]}
+        />
+      </Clouds>
 
-        {/* 1st (FRONT): Foreground details */}
-        <ForegroundDetailClouds position={[10, 1, 2]} opacity={1} speed={1} scale={[1, 1, 1]} />
+      {/* 1st (FRONT): Foreground details (isolated volume) */}
+      <Clouds limit={400}>
+        <ForegroundDetailClouds
+          position={[2, -3, 4]}
+          opacity={1}
+          speed={1}
+          scale={[1, 1, 4]}
+        />
       </Clouds>
     </Canvas>
   );
