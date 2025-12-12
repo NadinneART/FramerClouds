@@ -59,13 +59,13 @@ export function ForegroundClouds({
        <Cloud
         seed={20}
         segments={800}
-        bounds={[16, 8, 9]}
-        volume={16}
+        bounds={[5, 4, 9]}
+        volume={26}
         opacity={0.5 * opacity}
         speed={0.050 * speed}
         color={FG_BLUE_SHADOW}
         fade={10}
-        position={[7.5, 1, -6]}
+        position={[7, 1, -6]}
       />
 
 
