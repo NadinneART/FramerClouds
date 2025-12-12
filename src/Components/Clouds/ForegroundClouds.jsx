@@ -47,7 +47,7 @@ export function ForegroundClouds({
         segments={360}
         bounds={[25, 5, 6]}
         volume={10}
-        opacity={0 * opacity}
+        opacity={1 * opacity}
         speed={0.020 * speed}
         color={FG_BLUE_MAIN}
         fade={40}
@@ -57,11 +57,12 @@ export function ForegroundClouds({
 
 /* Right tower Spreaded */
        <Cloud
+       
         seed={20}
         segments={800}
         bounds={[5, 4, 9]}
         volume={26}
-        opacity={0.5 * opacity}
+        opacity={1* opacity}
         speed={0.050 * speed}
         color={FG_BLUE_SHADOW}
         fade={10}

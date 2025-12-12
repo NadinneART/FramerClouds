@@ -8,6 +8,7 @@ import { MidClouds } from "./Components/Clouds/MidClouds";
 import { MidCloudsLeft } from "./Components/Clouds/MidCloudsLeft";
 import { ForegroundDetailClouds } from "./Components/Clouds/ForegroundDetailClouds";
 
+
 function CloudScene() {
   return (
     <Canvas camera={{ position: [0, 1.4, 18], fov: 32 }} gl={{ alpha: true }}>
@@ -24,7 +25,7 @@ function CloudScene() {
         />
         <MidClouds
           position={[15, -2, -18]}
-          opacity={0.6}
+          opacity={0.3}
           speed={0.8}
           scale={[1, 1, 1]}
         />
