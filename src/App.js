@@ -12,7 +12,7 @@ import { ForegroundDetailClouds } from "./Components/Clouds/ForegroundDetailClou
 function CloudScene() {
   return (
     <Canvas camera={{ position: [0, 1.4, 18], fov: 32 }} gl={{ alpha: true }}>
-      <ambientLight intensity={2} />
+      <ambientLight intensity={4} />
       <directionalLight position={[7, 14, 6]} intensity={2} color="#ffffff" />
 
       {/* 3rd (BACK): Mid clouds */}
