@@ -13,7 +13,7 @@ function CloudScene() {
   return (
     <Canvas camera={{ position: [0, 1.4, 18], fov: 32 }} gl={{ alpha: true }}>
       <ambientLight intensity={4} />
-      <directionalLight position={[7, 14, 6]} intensity={2} color="#ffffff" />
+      <directionalLight position={[7, 14, 6]} intensity={3} color="#6de7ff" />
 
       {/* 3rd (BACK): Mid clouds */}
       <Clouds limit={800}>
