@@ -10,47 +10,20 @@ import { ForegroundDetailClouds } from "./Components/Clouds/ForegroundDetailClou
 
 function CloudScene() {
   return (
-    <Canvas
-      camera={{ position: [0, 1.4, 18], fov: 32 }}
-      gl={{ alpha: true }}
-    >
-      {/* Lights */}
+    <Canvas camera={{ position: [0, 1.4, 18], fov: 32 }} gl={{ alpha: true }}>
       <ambientLight intensity={2} />
       <directionalLight position={[7, 14, 6]} intensity={2} color="#ffffff" />
 
-      {/* One Clouds wrapper – all Cloud elements live in the groups below */}
       <Clouds limit={1000}>
+        {/* 3rd (BACK): Midclouds */}
+        <MidCloudsLeft position={[20, -8, -24]} opacity={0.3} speed={0.8} scale={[0.9, 1, 1]} />
+        <MidClouds     position={[15, -2, -18]} opacity={0.6} speed={0.8} scale={[1, 1, 1]} />
 
-  {/* BACK layer Left */}
-        <MidCloudsLeft
-          position={[20, -8, -20]}
-          opacity={0.5}
-          speed={0.8}
-          scale={[0.9, 1, 1]}
-        />
+        {/* 2nd: Foreground mass */}
+        <ForegroundClouds position={[4, -12, -4]} opacity={1} speed={2} scale={[1, 1.4, 1]} />
 
-
-        {/* BACK layer */}
-        <MidClouds
-          position={[15, -2, -20]}
-          opacity={0.6}
-          speed={0.8}
-          scale={[1, 1, 1]}
-        />
-         {/* #1 Foreground details (small clouds) */}
-         <ForegroundDetailClouds
-          position={[10, -5, -8]}
-          opacity={1}
-          speed={1}
-           scale={[1, 1, 1]}
-        />
-        {/* FRONT layer */}
-        <ForegroundClouds
-          position={[4, -12, 3]}
-          opacity={1}
-          speed={2}
-          scale={[1, 1.4, 1]}
-        />
+        {/* 1st (FRONT): Foreground details */}
+        <ForegroundDetailClouds position={[10, 1, 2]} opacity={1} speed={1} scale={[1, 1, 1]} />
       </Clouds>
     </Canvas>
   );

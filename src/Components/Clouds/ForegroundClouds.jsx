@@ -57,15 +57,15 @@ export function ForegroundClouds({
 
 /* Right tower Spreaded */
        <Cloud
-        seed={100}
-        segments={350}
-        bounds={[11, 5, 9]}
-        volume={10}
-        opacity={1 * opacity}
+        seed={20}
+        segments={800}
+        bounds={[16, 8, 9]}
+        volume={16}
+        opacity={0.5 * opacity}
         speed={0.050 * speed}
         color={FG_BLUE_SHADOW}
-        fade={40}
-        position={[7.5, 1, -8]}
+        fade={10}
+        position={[7.5, 1, -6]}
       />
 
 
@@ -79,9 +79,46 @@ export function ForegroundClouds({
         speed={0.028 * speed}
         color={FG_WHITE_TOP}
         fade={0}
-        position={[0, 0, -7]}
+        position={[-4, 0, -7]}
       />
 
+       <Cloud
+        seed={100}
+        segments={30}
+        bounds={[29, 1.0, 9]}
+        volume={25}
+        opacity={1 * opacity}
+        speed={0.028 * speed}
+        color={FG_WHITE_TOP}
+        fade={20}
+        position={[6, 0, -7]}
+      />
+
+      
+       <Cloud
+        seed={100}
+        segments={30}
+        bounds={[29, 1.0, 9]}
+        volume={25}
+        opacity={1 * opacity}
+        speed={0.028 * speed}
+        color={FG_WHITE_TOP}
+        fade={20}
+        position={[6, 0, -9]}
+      />
+    
+        
+        <Cloud
+        seed={11}
+        segments={200}
+        bounds={[25, 5, 8]}
+        volume={24} // Low volume/density but high bounds to create sharp, fluffy tops
+        opacity={0.5 * opacity}
+        speed={0.01 * speed}
+        color={FG_WHITE_TOP}
+        fade={50}
+        position={[5, 5, -6]} // Elevated position
+      />
 
       {/* White tops */}
       <Cloud
