@@ -10,6 +10,7 @@ import { ForegroundDetailClouds } from "./Components/Clouds/ForegroundDetailClou
 
 import CameraZoomOut from "./Components/CameraZoomOut";
 
+
 function CloudScene() {
   return (
     <Canvas
