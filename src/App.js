@@ -8,21 +8,24 @@ import { MidClouds } from "./Components/Clouds/MidClouds";
 import { MidCloudsLeft } from "./Components/Clouds/MidCloudsLeft";
 import { ForegroundDetailClouds } from "./Components/Clouds/ForegroundDetailClouds";
 
+import { RevealAfterFrames } from "./Components/RevealAfterFrames";
 
-function CloudScene() {
+function CloudScene({ onReady }) {
   return (
-    <Canvas 
-      dpr={[1, 1.25]} // caps retina render cost for better performance
-      camera={{ position: [0, 1.4, 18], fov: 32 }} 
-      gl={{  alpha: true,
+    <Canvas
+      dpr={[1, 1.25]} // cap retina cost
+      camera={{ position: [0, 1.4, 18], fov: 32 }}
+      gl={{
+        alpha: true,
         antialias: false,
         powerPreference: "high-performance",
       }}
-      > 
+    >
+      {/* Wait a few frames so clouds/shaders stabilize, then allow fade-in */}
+      <RevealAfterFrames frames={12} onReady={onReady} />
+
       <ambientLight intensity={4} />
       <directionalLight position={[7, 14, 6]} intensity={3} color="#6de7ff" />
-
- {/* reveal after a few frames so you don't see the "pop/build" */}
 
       {/* 3rd (BACK): Mid clouds */}
       <Clouds limit={800}>
@@ -64,10 +67,18 @@ function CloudScene() {
 }
 
 export default function App() {
+  const [ready, setReady] = React.useState(false);
+
   return (
     <div className="App">
-      <div className="canvas-wrapper">
-        <CloudScene />
+      <div
+        className="canvas-wrapper"
+        style={{
+          opacity: ready ? 1 : 0,
+          transition: "opacity 800ms ease",
+        }}
+      >
+        <CloudScene onReady={() => setReady(true)} />
       </div>
     </div>
   );

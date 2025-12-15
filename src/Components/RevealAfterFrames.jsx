@@ -8,14 +8,12 @@ export function RevealAfterFrames({ frames = 3, onReady }) {
   useFrame(() => {
     if (fired.current) return;
     count.current += 1;
-
     if (count.current >= frames) {
       fired.current = true;
       onReady?.();
     }
   });
 
-  // Reset if component remounts
   useEffect(() => {
     count.current = 0;
     fired.current = false;
