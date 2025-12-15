@@ -8,21 +8,25 @@ import { MidClouds } from "./Components/Clouds/MidClouds";
 import { MidCloudsLeft } from "./Components/Clouds/MidCloudsLeft";
 import { ForegroundDetailClouds } from "./Components/Clouds/ForegroundDetailClouds";
 
-import { RevealAfterFrames } from "./Components/RevealAfterFrames";
+import CameraZoomOut from "./Components/CameraZoomOut";
 
-function CloudScene({ onReady }) {
+function CloudScene() {
   return (
     <Canvas
-      dpr={[1, 1.25]} // cap retina cost
+      dpr={[1, 1.5]}
       camera={{ position: [0, 1.4, 18], fov: 32 }}
       gl={{
         alpha: true,
-        antialias: false,
+        antialias: true,
         powerPreference: "high-performance",
       }}
     >
-      {/* Wait a few frames so clouds/shaders stabilize, then allow fade-in */}
-      <RevealAfterFrames frames={10} onReady={onReady} />
+ {/* Camera animation on load */}
+     {/* <CameraZoomOut 
+        from={[0, 1.4, 12]}   // start near foreground
+        to={[0, 1.4, 18]}    // end at default
+        duration={1.2}
+      />*/} 
 
       <ambientLight intensity={4} />
       <directionalLight position={[7, 14, 6]} intensity={3} color="#6de7ff" />
@@ -53,7 +57,7 @@ function CloudScene({ onReady }) {
         />
       </Clouds>
 
-      {/* 1st (FRONT): Foreground details (isolated volume) */}
+      {/* 1st (FRONT): Foreground details */}
       <Clouds limit={400}>
         <ForegroundDetailClouds
           position={[2, -3, 4]}
@@ -67,18 +71,10 @@ function CloudScene({ onReady }) {
 }
 
 export default function App() {
-  const [ready, setReady] = React.useState(false);
-
   return (
     <div className="App">
-      <div
-        className="canvas-wrapper"
-        style={{
-          opacity: ready ? 1 : 0,
-          transition: "opacity 1000ms ease",
-        }}
-      >
-        <CloudScene onReady={() => setReady(true)} />
+      <div className="canvas-wrapper">
+        <CloudScene />
       </div>
     </div>
   );
