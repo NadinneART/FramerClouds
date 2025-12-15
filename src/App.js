@@ -2,32 +2,25 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Clouds } from "@react-three/drei";
+
 import cloudTex from "./Assets/cloud.png";
+
 import { ForegroundClouds } from "./Components/Clouds/ForegroundClouds";
 import { MidClouds } from "./Components/Clouds/MidClouds";
 import { MidCloudsLeft } from "./Components/Clouds/MidCloudsLeft";
 import { ForegroundDetailClouds } from "./Components/Clouds/ForegroundDetailClouds";
 
-import CameraZoomOut from "./Components/CameraZoomOut";
+import { RevealAfterFrames } from "./Components/RevealAfterFrames.jsx";
 
-
-function CloudScene() {
+function CloudScene({ onReady }) {
   return (
     <Canvas
-      dpr={[1, 1.5]}
+      dpr={[1, 1.25]}
       camera={{ position: [0, 1.4, 18], fov: 32 }}
-      gl={{
-        alpha: true,
-        antialias: true,
-        powerPreference: "high-performance",
-      }}
+      gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
     >
- {/* Camera animation on load */}
-     {/* <CameraZoomOut 
-        from={[0, 1.4, 12]}   // start near foreground
-        to={[0, 1.4, 18]}    // end at default
-        duration={1.2}
-      />*/} 
+      {/* Wait a few frames so shaders/textures settle, then allow wrapper fade-in */}
+      <RevealAfterFrames frames={12} onReady={onReady} />
 
       <ambientLight intensity={4} />
       <directionalLight position={[7, 14, 6]} intensity={3} color="#6de7ff" />
@@ -72,10 +65,12 @@ function CloudScene() {
 }
 
 export default function App() {
+  const [ready, setReady] = React.useState(false);
+
   return (
     <div className="App">
-      <div className="canvas-wrapper">
-        <CloudScene />
+      <div className={`canvas-wrapper ${ready ? "is-ready" : ""}`}>
+        <CloudScene onReady={() => setReady(true)} />
       </div>
     </div>
   );
