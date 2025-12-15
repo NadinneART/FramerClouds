@@ -7,6 +7,8 @@ const FG_BLUE_SHADOW = "#4b9adb"
 const FG_BLUE_MAIN = "#85c0fe"
 const FG_WHITE_TOP = "#FEFEFF"
 
+const CLOUD_TEX = "/textures/cloud.png" // ✅ local, no CORS
+
 export function ForegroundClouds({
   position = [0, 0, 0],
   scale = [1, 1, 1],
@@ -17,6 +19,7 @@ export function ForegroundClouds({
     <group position={position} scale={scale}>
       {/* Base soft blue belt */}
       <Cloud
+        texture={CLOUD_TEX}
         key="fg-base-belt"
         seed={8}
         segments={350}
@@ -31,6 +34,7 @@ export function ForegroundClouds({
 
       {/* LEFT tower */}
       <Cloud
+        texture={CLOUD_TEX}
         key="fg-left-tower"
         seed={9}
         segments={100}
@@ -45,6 +49,7 @@ export function ForegroundClouds({
 
       {/* RIGHT tower */}
       <Cloud
+        texture={CLOUD_TEX}
         key="fg-right-tower"
         seed={150}
         segments={360}
@@ -57,8 +62,9 @@ export function ForegroundClouds({
         position={[11, 1.5, -8]}
       />
 
-      {/* Right tower Spreaded  */}
+      {/* Right tower Spreaded */}
       <Cloud
+        texture={CLOUD_TEX}
         key="fg-right-spread"
         seed={30}
         segments={800}
@@ -73,6 +79,7 @@ export function ForegroundClouds({
 
       {/* Center valley */}
       <Cloud
+        texture={CLOUD_TEX}
         key="fg-center-valley-a"
         seed={100}
         segments={20}
@@ -86,8 +93,9 @@ export function ForegroundClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         key="fg-center-valley-b"
-        seed={101} // was 100
+        seed={101}
         segments={30}
         bounds={[29, 1.0, 9]}
         volume={25}
@@ -99,8 +107,9 @@ export function ForegroundClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         key="fg-center-valley-c"
-        seed={102} // was 100
+        seed={102}
         segments={30}
         bounds={[29, 1.0, 9]}
         volume={25}
@@ -112,6 +121,7 @@ export function ForegroundClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         key="fg-topper-a"
         seed={11}
         segments={200}
@@ -126,8 +136,9 @@ export function ForegroundClouds({
 
       {/* White tops */}
       <Cloud
+        texture={CLOUD_TEX}
         key="fg-topper-b"
-        seed={12} // was 11
+        seed={12}
         segments={140}
         bounds={[20, 3.6, 5]}
         volume={0}

@@ -4,7 +4,9 @@ import { Cloud } from "@react-three/drei";
 
 /* Mid-plane palette */
 const MID_WHITE_BASE = "#ffffff";
-const MID_BLUE_SHADOW  = "#9ec1e6";
+const MID_BLUE_SHADOW = "#9ec1e6";
+
+const CLOUD_TEX = "/textures/cloud.png"; // ✅ local texture
 
 export function MidClouds({
   position = [0, 0, 0],
@@ -16,6 +18,7 @@ export function MidClouds({
     <group position={position} scale={scale}>
       {/* Main distant wall */}
       <Cloud
+        texture={CLOUD_TEX}
         seed={90}
         segments={150}
         bounds={[26, 6, 3]}
@@ -29,6 +32,7 @@ export function MidClouds({
 
       {/* Higher back layer */}
       <Cloud
+        texture={CLOUD_TEX}
         seed={90}
         segments={150}
         bounds={[24, 5, 8]}

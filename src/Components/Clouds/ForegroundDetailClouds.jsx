@@ -6,6 +6,8 @@ import { Cloud } from "@react-three/drei";
 const DETAIL_BLUE_SHADOW = "#80B6E1";
 const DETAIL_WHITE_TOP   = "#FEFEFF";
 
+const CLOUD_TEX = "/textures/cloud.png"; // ✅ local, no CORS
+
 export function ForegroundDetailClouds({
   position = [0, 0, 0],
   scale = [1, 1, 1],
@@ -19,6 +21,7 @@ export function ForegroundDetailClouds({
          ========================= */}
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={610}
         segments={60}
         bounds={[4.0, 1.1, 2.4]}
@@ -31,6 +34,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={611}
         segments={60}
         bounds={[3.6, 1.0, 2.2]}
@@ -43,6 +47,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={612}
         segments={65}
         bounds={[4.2, 1.2, 2.5]}
@@ -55,6 +60,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={613}
         segments={60}
         bounds={[3.7, 1.0, 2.2]}
@@ -67,6 +73,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={614}
         segments={70}
         bounds={[4.6, 1.3, 2.7]}
@@ -79,6 +86,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={615}
         segments={60}
         bounds={[3.8, 1.0, 2.2]}
@@ -91,6 +99,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={616}
         segments={70}
         bounds={[4.8, 1.3, 2.8]}
@@ -107,6 +116,7 @@ export function ForegroundDetailClouds({
          ========================= */}
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={617}
         segments={60}
         bounds={[3.9, 1.05, 2.3]}
@@ -119,6 +129,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={618}
         segments={75}
         bounds={[5.2, 1.35, 3.0]}
@@ -131,6 +142,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={619}
         segments={60}
         bounds={[4.0, 1.1, 2.4]}
@@ -147,6 +159,7 @@ export function ForegroundDetailClouds({
          ========================= */}
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={620}
         segments={80}
         bounds={[5.8, 1.45, 3.2]}
@@ -159,6 +172,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={621}
         segments={65}
         bounds={[4.4, 1.15, 2.6]}
@@ -171,6 +185,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={622}
         segments={85}
         bounds={[6.2, 1.55, 3.4]}
@@ -183,6 +198,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={623}
         segments={65}
         bounds={[4.6, 1.2, 2.7]}
@@ -195,6 +211,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={624}
         segments={90}
         bounds={[6.6, 1.6, 3.6]}
@@ -207,6 +224,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={625}
         segments={65}
         bounds={[4.8, 1.25, 2.8]}
@@ -219,6 +237,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={626}
         segments={95}
         bounds={[7.0, 1.7, 3.8]}
@@ -231,6 +250,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={627}
         segments={65}
         bounds={[4.8, 1.25, 2.8]}
@@ -243,6 +263,7 @@ export function ForegroundDetailClouds({
       />
 
       <Cloud
+        texture={CLOUD_TEX}
         seed={628}
         segments={90}
         bounds={[6.8, 1.65, 3.7]}
