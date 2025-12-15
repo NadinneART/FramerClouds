@@ -1,13 +1,14 @@
 // src/Components/Clouds/ForegroundClouds.jsx
 import React from "react"
 import { Cloud } from "@react-three/drei"
+import cloudTex from "../../Assets/cloud.png"
 
 /* Front-plane palette */
 const FG_BLUE_SHADOW = "#4b9adb"
 const FG_BLUE_MAIN = "#85c0fe"
 const FG_WHITE_TOP = "#FEFEFF"
 
-const CLOUD_TEX = "/textures/cloud.png" // ✅ local, no CORS
+const CLOUD_TEX = cloudTex
 
 export function ForegroundClouds({
   position = [0, 0, 0],

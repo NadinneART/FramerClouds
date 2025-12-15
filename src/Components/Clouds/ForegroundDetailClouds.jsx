@@ -1,12 +1,13 @@
 // src/Components/Clouds/ForegroundDetailClouds.jsx
 import React from "react";
 import { Cloud } from "@react-three/drei";
+import cloudTex from "../../Assets/cloud.png"
 
 /* Detail palette */
 const DETAIL_BLUE_SHADOW = "#80B6E1";
 const DETAIL_WHITE_TOP   = "#FEFEFF";
 
-const CLOUD_TEX = "/textures/cloud.png"; // ✅ local, no CORS
+const CLOUD_TEX = cloudTex
 
 export function ForegroundDetailClouds({
   position = [0, 0, 0],

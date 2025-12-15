@@ -1,12 +1,13 @@
 // src/Components/Clouds/MidClouds.jsx
 import React from "react";
 import { Cloud } from "@react-three/drei";
+import cloudTex from "../../Assets/cloud.png"
 
 /* Mid-plane palette */
 const MID_WHITE_BASE = "#ffffff";
 const MID_BLUE_SHADOW = "#9ec1e6";
 
-const CLOUD_TEX = "/textures/cloud.png"; // ✅ local texture
+const CLOUD_TEX = cloudTex
 
 export function MidClouds({
   position = [0, 0, 0],
