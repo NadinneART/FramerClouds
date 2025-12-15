@@ -54,9 +54,9 @@ function CloudScene({ onReady }) {
       {/* 1st (FRONT): Foreground details */}
       <Clouds limit={400} texture={cloudTex}>
         <ForegroundDetailClouds
-          position={[2, -3, 4]}
+          position={[2, -2.5, 4]}
           opacity={1}
-          speed={1}
+          speed={4}
           scale={[1, 1, 4]}
         />
       </Clouds>

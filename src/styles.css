@@ -20,20 +20,25 @@ body,
    - extends 1px outside each side to hide seams
 */
 .canvas-wrapper {
-    width: 100%;
-    height: 100vh;
-    opacity: 0;
-  transition: opacity 900ms ease-out;
-  will-change: opacity;
+  width: 100%;
+  height: 100vh;
+
+  opacity: 0;
+  filter: blur(6px);
+
+  transition: opacity 900ms ease-out, filter 900ms ease-out;
+  will-change: opacity, filter;
 }
 
 .canvas-wrapper.is-ready {
   opacity: 1;
+  filter: blur(0);
 
-    /* background-image: url("./Assets/desktop-54.jpg"); */
-    background-size: cover;
-    background-position: center bottom;
-    background-repeat: no-repeat;
+  /* Optional background */
+  /* background-image: url("./Assets/desktop-54.jpg"); */
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
 }
 
 /* Just in case, make canvas block so no extra inline spacing */
