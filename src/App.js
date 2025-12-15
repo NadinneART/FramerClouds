@@ -75,7 +75,7 @@ export default function App() {
         className="canvas-wrapper"
         style={{
           opacity: ready ? 1 : 0,
-          transition: "opacity 2500ms ease",
+          transition: "opacity 1000ms ease",
         }}
       >
         <CloudScene onReady={() => setReady(true)} />
