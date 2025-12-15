@@ -13,7 +13,7 @@ function CloudScene() {
   return (
     <Canvas 
       dpr={[1, 1.25]} // caps retina render cost for better performance
-      camera={{ position: [0, 1.4, 18], fov: 32 }} gl={{ alpha: true }}
+      camera={{ position: [0, 1.4, 18], fov: 32 }} 
       gl={{  alpha: true,
         antialias: false,
         powerPreference: "high-performance",
@@ -21,6 +21,8 @@ function CloudScene() {
       > 
       <ambientLight intensity={4} />
       <directionalLight position={[7, 14, 6]} intensity={3} color="#6de7ff" />
+
+ {/* reveal after a few frames so you don't see the "pop/build" */}
 
       {/* 3rd (BACK): Mid clouds */}
       <Clouds limit={800}>
