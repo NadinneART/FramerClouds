@@ -12,8 +12,13 @@ import { ForegroundDetailClouds } from "./Components/Clouds/ForegroundDetailClou
 function CloudScene() {
   return (
     <Canvas 
-      dpr={[1.25]} // caps retina render cost for better performance
-      camera={{ position: [0, 1.4, 18], fov: 32 }} gl={{ alpha: true }}>
+      dpr={[1, 1.25]} // caps retina render cost for better performance
+      camera={{ position: [0, 1.4, 18], fov: 32 }} gl={{ alpha: true }}
+      gl={{  alpha: true,
+        antialias: false,
+        powerPreference: "high-performance",
+      }}
+      > 
       <ambientLight intensity={4} />
       <directionalLight position={[7, 14, 6]} intensity={3} color="#6de7ff" />
 
