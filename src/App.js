@@ -22,7 +22,7 @@ function CloudScene({ onReady }) {
       }}
     >
       {/* Wait a few frames so clouds/shaders stabilize, then allow fade-in */}
-      <RevealAfterFrames frames={12} onReady={onReady} />
+      <RevealAfterFrames frames={10} onReady={onReady} />
 
       <ambientLight intensity={4} />
       <directionalLight position={[7, 14, 6]} intensity={3} color="#6de7ff" />
@@ -75,7 +75,7 @@ export default function App() {
         className="canvas-wrapper"
         style={{
           opacity: ready ? 1 : 0,
-          transition: "opacity 800ms ease",
+          transition: "opacity 2500ms ease",
         }}
       >
         <CloudScene onReady={() => setReady(true)} />
