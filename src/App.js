@@ -36,7 +36,7 @@ function CloudScene({ onReady }) {
         <MidClouds
           position={[15, -2, -18]}
           opacity={0.3}
-          speed={4}
+          speed={0.8}
           scale={[1, 1, 1]}
         />
       </Clouds>
@@ -46,7 +46,7 @@ function CloudScene({ onReady }) {
         <ForegroundClouds
           position={[4, -12, -4]}
           opacity={1}
-          speed={8}
+          speed={5}
           scale={[1, 1.4, 1]}
         />
       </Clouds>
